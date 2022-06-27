@@ -16,7 +16,11 @@ public class TradeRecordsController : ControllerBase {
     private readonly IMapper mapper;
     private readonly ILogger logger;
 
-    public TradeRecordsController(ITradeRecordService tradeRecordService, ISystemClock clock, IMapper mapper, ILogger logger) {
+    public TradeRecordsController(
+        ITradeRecordService tradeRecordService, 
+        ISystemClock clock, 
+        IMapper mapper, 
+        ILogger logger) {
         this.tradeRecordService = tradeRecordService;
         this.clock = clock;
         this.mapper = mapper;

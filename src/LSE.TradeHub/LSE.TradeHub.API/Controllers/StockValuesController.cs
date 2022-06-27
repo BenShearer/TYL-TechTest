@@ -12,7 +12,10 @@ public class StockValuesController : ControllerBase {
     private readonly IMapper mapper;
     private readonly ILogger logger;
 
-    public StockValuesController(ITradeRecordService tradeRecordService, IMapper mapper, ILogger logger) {
+    public StockValuesController(
+        ITradeRecordService tradeRecordService, 
+        IMapper mapper, 
+        ILogger logger) {
         this.tradeRecordService = tradeRecordService;
         this.mapper = mapper;
         this.logger = logger;

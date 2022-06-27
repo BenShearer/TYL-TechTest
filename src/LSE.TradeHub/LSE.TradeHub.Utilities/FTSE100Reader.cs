@@ -1,11 +1,10 @@
 ﻿using System.Reflection;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using LSE.TradeHub.Core.Models;
 
 namespace LSE.TradeHub.Utilities;
 
-public class FTSE100Reader : IStockLoader {
+public partial class FTSE100Reader : IStockLoader {
     private const string RESOURCE_NAME = "LSE.TradeHub.Utilities.Data.FTSE100-list.json";
 
     public Stock[] GetStockList() {
@@ -21,10 +20,5 @@ public class FTSE100Reader : IStockLoader {
                 return null;
             }
         }
-    }
-
-    class ListedStock {
-        [JsonPropertyName("symbol")] public string Symbol { get; set; }
-        [JsonPropertyName("name")] public string Name { get; set; }
     }
 }
