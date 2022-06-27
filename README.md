@@ -15,7 +15,7 @@ invoke command `dotnet restore`
 then `dotnet run --project LSE.TradeHub.API`
 
 Open the following link:
-[https://localhost:7169/swagger]https://localhost:7169/swagger
+https://localhost:7169/swagger
 
 ### Projects
 
@@ -44,7 +44,7 @@ The API tier handles the Swagger/Swashbuckle UI and hosts the two controllers:
 
 The Core DAL Layer hosts the DAL services, though only one service was required for this particular MVP as the mean stock value could be retrieved directly from the data source by grouping/filtering the TradeRecord data set and utilising Linq to Sql's Average() method. 
 
-#Enhancements
+# Enhancements
 
 As it stands, this wouldn't be very scalable at all. While the POST to create the new TradeRecords is very lightweight, it puts the onus of ensuring the data gets into the database on the request/response loop. Likewise, the request for stock values goes directly to the database and as the volume of TradeRecords increases, the response time will increase in a linear fashion. This would make the DB a very tight bottleneck that would only get worse with application layer scaling.
 
@@ -55,3 +55,7 @@ Depending on the tolerance of latency for the data to be updated. The insert of 
 ![TylTechTest-Enhancements drawio](https://user-images.githubusercontent.com/414287/176009609-244bcc43-8628-40f4-966d-cf6dbe8665f2.png)
 
 This would have the issue of adding a little latency to the price update, but it would guarantee the integrity of the data as the system would receive and 'store' the TradeRecord in a decoupled system.
+
+To achieve this the implementation of the ITradeRecordService could be altered to push the new trade records to a queue, and then processed by either the application itself, or preferably a serverless function (AWS Lambda or Azure Funtion). The cache could be updated via a message queue trigger, or by a SQL Trigger is SQL server was the data store of choice, though a cloud native data store could provide better and faster triggering.
+
+The cache would be handled perfectly by one of Redis, Dynamo or Elastic. 
