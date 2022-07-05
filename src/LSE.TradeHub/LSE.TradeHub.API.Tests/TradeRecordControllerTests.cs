@@ -1,27 +1,31 @@
 using AutoMapper;
+
 using LSE.TradeHub.API.Configuration;
 using LSE.TradeHub.API.Controllers;
 using LSE.TradeHub.API.Models.Request;
 using LSE.TradeHub.Core.Interfaces;
 using LSE.TradeHub.Core.Models;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Internal;
 using Microsoft.Extensions.Logging;
+
 using Moq;
+
 using Shouldly;
 
 namespace LSE.TradeHub.API.Tests {
     public class TradeRecordControllerTests {
         private readonly Mock<ITradeRecordService> tradeRecordServiceMock;
         private readonly Mock<ISystemClock> clockMock;
-        private readonly Mock<ILogger> loggerMock;
+        private readonly Mock<ILogger<TradeRecordsController>> loggerMock;
         private readonly IMapper mapper;
 
         public TradeRecordControllerTests() {
             tradeRecordServiceMock = new Mock<ITradeRecordService>();
             clockMock = new Mock<ISystemClock>();
-            loggerMock = new Mock<ILogger>();
+            loggerMock = new Mock<ILogger<TradeRecordsController>>();
 
             mapper = new MapperConfiguration(c =>
                 c.AddProfile<AutomapperProfile>()).CreateMapper();
@@ -55,12 +59,11 @@ namespace LSE.TradeHub.API.Tests {
 
             clockMock.VerifyAll();
             tradeRecordServiceMock.Verify(svc =>
-                    svc.Create(
-                        It.Is<TradeRecord>(x =>
-                            x.Timestamp == testDate.ToUniversalTime()
-                        )
+                svc.Create(
+                    It.Is<TradeRecord>(x =>
+                        x.Timestamp == testDate.ToUniversalTime()
                     )
-                , Times.Once);
+                ), Times.Once);
         }
 
         [Fact]
@@ -77,10 +80,9 @@ namespace LSE.TradeHub.API.Tests {
             await controller.AddTradeRecord(model);
 
             tradeRecordServiceMock.Verify(svc =>
-                    svc.Create(
-                        It.Is<TradeRecord>(x => x.UnitPrice == 2)
-                    )
-                , Times.Once);
+                svc.Create(
+                    It.Is<TradeRecord>(x => x.UnitPrice == 2)
+                ), Times.Once);
         }
 
         [Fact]

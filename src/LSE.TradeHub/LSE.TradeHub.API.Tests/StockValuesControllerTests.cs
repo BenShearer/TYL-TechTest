@@ -1,31 +1,35 @@
 using AutoMapper;
+
 using LSE.TradeHub.API.Configuration;
 using LSE.TradeHub.API.Controllers;
 using LSE.TradeHub.API.Models.Response;
 using LSE.TradeHub.Core.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+
 using Moq;
+
 using Shouldly;
 
 namespace LSE.TradeHub.API.Tests;
 
 public class StockValuesControllerTests {
     private readonly Mock<ITradeRecordService> tradeRecordServiceMock;
-    private readonly Mock<ILogger> loggerMock;
+    private readonly Mock<ILogger<StockValuesController>> loggerMock;
     private readonly IMapper mapper;
 
     private const string TEST_SYMBOL_1 = "TEST_1";
     private const string TEST_SYMBOL_2 = "TEST_2";
     private List<KeyValuePair<string, decimal>> TestValues =>
         new() {
-            new KeyValuePair<string, decimal>(TEST_SYMBOL_1, (decimal)101.1),
-            new KeyValuePair<string, decimal>(TEST_SYMBOL_2, (decimal)102.2)
+            new KeyValuePair<string, decimal>(TEST_SYMBOL_1, (decimal) 101.1),
+            new KeyValuePair<string, decimal>(TEST_SYMBOL_2, (decimal) 102.2)
         };
 
     public StockValuesControllerTests() {
         tradeRecordServiceMock = new Mock<ITradeRecordService>();
-        loggerMock = new Mock<ILogger>();
+        loggerMock = new Mock<ILogger<StockValuesController>>();
 
         mapper = new MapperConfiguration(c =>
             c.AddProfile<AutomapperProfile>()).CreateMapper();
@@ -75,7 +79,7 @@ public class StockValuesControllerTests {
 
         var value = objectResult.Value as StockValue;
         value.Symbol.ShouldBe(TEST_SYMBOL_1);
-        value.Value.ShouldBe((decimal)101.1);
+        value.Value.ShouldBe((decimal) 101.1);
     }
 
     [Theory]
@@ -92,7 +96,7 @@ public class StockValuesControllerTests {
     public async Task GetStockValuesBySymbol_With_NonExistentSymbol_Returns_NotFOund() {
         tradeRecordServiceMock
             .Setup(svc => svc.GetMeanValueBySymbol(TEST_SYMBOL_1))
-            .Returns<KeyValuePair<string, decimal>?>(null);
+            .Returns<KeyValuePair<string, decimal> ?>(null);
         var controller = ConstructController();
         var result = await controller.GetStockValuesBySymbol(TEST_SYMBOL_1);
 
