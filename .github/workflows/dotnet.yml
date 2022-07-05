@@ -21,5 +21,7 @@ jobs:
       run: dotnet restore ./src/LSE.TradeHub/LSE.TradeHub.sln
     - name: Build
       run: dotnet build ./src/LSE.TradeHub/LSE.TradeHub.sln --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Test Controllers
+      run: dotnet test ./src/LSE.TradeHub/LSE.TradeHub.API.Tests --no-build --verbosity normal
+    - name: Test Core
+      run: dotnet test ./src/LSE.TradeHub/LSE.TradeHub.Core.Tests --no-build --verbosity normal
