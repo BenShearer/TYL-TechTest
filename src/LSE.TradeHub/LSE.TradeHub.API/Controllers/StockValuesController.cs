@@ -1,6 +1,8 @@
 using AutoMapper;
+
 using LSE.TradeHub.API.Models.Response;
 using LSE.TradeHub.Core.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace LSE.TradeHub.API.Controllers;
@@ -10,12 +12,12 @@ namespace LSE.TradeHub.API.Controllers;
 public class StockValuesController : ControllerBase {
     private readonly ITradeRecordService tradeRecordService;
     private readonly IMapper mapper;
-    private readonly ILogger logger;
+    private readonly ILogger<StockValuesController> logger;
 
     public StockValuesController(
-        ITradeRecordService tradeRecordService, 
-        IMapper mapper, 
-        ILogger logger) {
+        ITradeRecordService tradeRecordService,
+        IMapper mapper,
+        ILogger<StockValuesController> logger) {
         this.tradeRecordService = tradeRecordService;
         this.mapper = mapper;
         this.logger = logger;

@@ -4,8 +4,9 @@ using LSE.TradeHub.Core.Interfaces;
 using LSE.TradeHub.Core.Models;
 using LSE.TradeHub.Core.Services;
 using LSE.TradeHub.Utilities;
-using Microsoft.AspNetCore.Authentication;
+
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Internal;
 
 namespace LSE.TradeHub.API {
     public class Program {
@@ -17,7 +18,7 @@ namespace LSE.TradeHub.API {
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddAutoMapper(typeof(AutomapperProfile));
-
+            builder.Services.AddLogging(o => o.AddConsole());
             AddLocalServices(builder);
 
             var seederOptions = new SeederOptions();
@@ -36,7 +37,7 @@ namespace LSE.TradeHub.API {
             app.UseSwaggerUI();
 
             if (seederOptions.SeedData) {
-                using (var scope = app.Services.CreateScope()) {
+                using(var scope = app.Services.CreateScope()) {
                     var seeder = scope.ServiceProvider.GetRequiredService<IDataSeeder>();
                     await seeder.SeedData();
                 }
@@ -47,8 +48,8 @@ namespace LSE.TradeHub.API {
 
         static void AddLocalServices(WebApplicationBuilder builder) {
             builder.Services.AddDbContext<TradeDataContext>(o => {
-                //o.UseInMemoryDatabase(databaseName: "tradedata");
-                o.UseSqlServer(builder.Configuration.GetConnectionString("TradeData"));
+                o.UseInMemoryDatabase(databaseName: "tradedata");
+                //o.UseSqlServer(builder.Configuration.GetConnectionString("TradeData"));
             });
 
             builder.Services.AddScoped<ISystemClock, SystemClock>();

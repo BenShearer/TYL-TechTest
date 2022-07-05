@@ -1,7 +1,9 @@
 using AutoMapper;
+
 using LSE.TradeHub.API.Models.Request;
 using LSE.TradeHub.Core.Interfaces;
 using LSE.TradeHub.Core.Models;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Internal;
@@ -14,13 +16,13 @@ public class TradeRecordsController : ControllerBase {
     private readonly ITradeRecordService tradeRecordService;
     private readonly ISystemClock clock;
     private readonly IMapper mapper;
-    private readonly ILogger logger;
+    private readonly ILogger<TradeRecordsController> logger;
 
     public TradeRecordsController(
-        ITradeRecordService tradeRecordService, 
-        ISystemClock clock, 
-        IMapper mapper, 
-        ILogger logger) {
+        ITradeRecordService tradeRecordService,
+        ISystemClock clock,
+        IMapper mapper,
+        ILogger<TradeRecordsController> logger) {
         this.tradeRecordService = tradeRecordService;
         this.clock = clock;
         this.mapper = mapper;
