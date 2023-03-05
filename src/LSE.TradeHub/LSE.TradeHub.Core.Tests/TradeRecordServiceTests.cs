@@ -30,14 +30,6 @@ namespace LSE.TradeHub.Core.Tests {
             tradeRecordService = new TradeRecordService(dataContext);
         }
 
-        [Fact]
-        public void GetAllMeanStockValues_Returns_Correct_Values() {
-            var result = tradeRecordService.GetAllStockMeanValues();
-
-            result[TEST_SYMBOL_1].ShouldBe(2);
-            result[TEST_SYMBOL_2].ShouldBe(10);
-        }
-
         [Theory]
         [InlineData(TEST_SYMBOL_1, 2)]
         [InlineData(TEST_SYMBOL_2, 10)]

@@ -24,20 +24,6 @@ public class StockValuesController : ControllerBase {
     }
 
     [HttpGet]
-    [ProducesResponseType(200, Type = typeof(StockValue[]))]
-    public async Task<IActionResult> GetAllStockValues() {
-        try {
-            var stockValues = tradeRecordService.GetAllStockMeanValues();
-
-            var result = mapper.Map<StockValue[]>(stockValues.ToList());
-            return Ok(result);
-        } catch (Exception ex) {
-            logger.Log(LogLevel.Error, "Error retreiving stock values", ex);
-            return StatusCode(500);
-        }
-    }
-
-    [HttpGet]
     [Route("{symbol}")]
     [ProducesResponseType(200, Type = typeof(StockValue))]
     public async Task<IActionResult> GetStockValuesBySymbol([FromRoute] string symbol) {

@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LSE.TradeHub.Core\LSE.TradeHub.Core.csproj" />
-    <ProjectReference Include="..\LSE.TradeHub.Utilities\LSE.TradeHub.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

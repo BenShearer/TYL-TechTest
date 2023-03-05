@@ -35,32 +35,7 @@ public class StockValuesControllerTests {
             c.AddProfile<AutomapperProfile>()).CreateMapper();
     }
 
-    [Fact]
-    public async Task GetAllStockValues_Maps_Values_Correctly() {
-        tradeRecordServiceMock
-            .Setup(svc => svc.GetAllStockMeanValues())
-            .Returns(TestValues.ToDictionary(x => x.Key, y => y.Value));
-
-        var controller = ConstructController();
-        var result = await controller.GetAllStockValues();
-
-        result.ShouldBeOfType<OkObjectResult>();
-
-        var objectResult = result as OkObjectResult;
-
-        objectResult.Value.ShouldBeOfType<StockValue[]>();
-
-        var values = objectResult.Value as StockValue[];
-
-        values.Length.ShouldBe(TestValues.Count);
-
-        foreach (var testValue in TestValues) {
-            values.Any(x =>
-                    x.Symbol == testValue.Key && x.Value == testValue.Value)
-                .ShouldBeTrue();
-        }
-    }
-
+    
     [Fact]
     public async Task GetStockValuesBySymbol_CallsServiceCorrectly() {
         tradeRecordServiceMock

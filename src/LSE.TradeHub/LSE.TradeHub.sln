@@ -5,13 +5,13 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSE.TradeHub.API", "LSE.TradeHub.API\LSE.TradeHub.API.csproj", "{E45A6421-DCF7-4B6E-BAC4-A124792C9673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSE.TradeHub.Core", "LSE.TradeHub.Core\LSE.TradeHub.Core.csproj", "{1A05300A-4582-4F52-8797-A0F2005FEBD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSE.TradeHub.Core", "LSE.TradeHub.Core\LSE.TradeHub.Core.csproj", "{1A05300A-4582-4F52-8797-A0F2005FEBD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSE.TradeHub.Utilities", "LSE.TradeHub.Utilities\LSE.TradeHub.Utilities.csproj", "{D19E7E48-97B8-48D5-8069-625C747B3C7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSE.TradeHub.API.Tests", "LSE.TradeHub.API.Tests\LSE.TradeHub.API.Tests.csproj", "{76D247A1-9712-4777-BDE3-152C90FA7F05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSE.TradeHub.API.Tests", "LSE.TradeHub.API.Tests\LSE.TradeHub.API.Tests.csproj", "{76D247A1-9712-4777-BDE3-152C90FA7F05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSE.TradeHub.Core.Tests", "LSE.TradeHub.Core.Tests\LSE.TradeHub.Core.Tests.csproj", "{F20FD1C7-607F-472C-8056-589DFFA9CDAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSE.TradeHub.Core.Tests", "LSE.TradeHub.Core.Tests\LSE.TradeHub.Core.Tests.csproj", "{F20FD1C7-607F-472C-8056-589DFFA9CDAF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C37B99DF-9DDF-446A-A008-98C5BD2DFAB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,6 @@ Global
 		{1A05300A-4582-4F52-8797-A0F2005FEBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A05300A-4582-4F52-8797-A0F2005FEBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A05300A-4582-4F52-8797-A0F2005FEBD8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D19E7E48-97B8-48D5-8069-625C747B3C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D19E7E48-97B8-48D5-8069-625C747B3C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D19E7E48-97B8-48D5-8069-625C747B3C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D19E7E48-97B8-48D5-8069-625C747B3C7E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76D247A1-9712-4777-BDE3-152C90FA7F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76D247A1-9712-4777-BDE3-152C90FA7F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76D247A1-9712-4777-BDE3-152C90FA7F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,6 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{76D247A1-9712-4777-BDE3-152C90FA7F05} = {C37B99DF-9DDF-446A-A008-98C5BD2DFAB6}
+		{F20FD1C7-607F-472C-8056-589DFFA9CDAF} = {C37B99DF-9DDF-446A-A008-98C5BD2DFAB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31B2D22D-CCF1-41C5-BB76-0719327B823A}

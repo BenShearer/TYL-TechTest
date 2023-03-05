@@ -105,7 +105,6 @@ namespace LSE.TradeHub.API.Tests {
         private TradeRecordsController ConstructController() {
             return new TradeRecordsController(
                 tradeRecordServiceMock.Object,
-                clockMock.Object,
                 mapper,
                 loggerMock.Object);
         }

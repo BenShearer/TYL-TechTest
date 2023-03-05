@@ -16,12 +16,4 @@ public class TradeRecordService : ServiceBase<TradeRecord, int>, ITradeRecordSer
         return new KeyValuePair<string, decimal>(symbol, meanPrice);
     }
 
-    public Dictionary<string, decimal> GetAllStockMeanValues() {
-        var stockValues = DataSet.GroupBy(x => x.StockId).Select(x => new {
-            Symbol = x.First().StockId,
-            MeanTradeValue = x.Average(s => s.UnitPrice)
-        });
-
-        return stockValues.ToDictionary(x => x.Symbol, x => x.MeanTradeValue);
-    }
 }

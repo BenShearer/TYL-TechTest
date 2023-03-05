@@ -14,17 +14,15 @@ namespace LSE.TradeHub.API.Controllers;
 [Route("[controller]")]
 public class TradeRecordsController : ControllerBase {
     private readonly ITradeRecordService tradeRecordService;
-    private readonly ISystemClock clock;
+    
     private readonly IMapper mapper;
     private readonly ILogger<TradeRecordsController> logger;
 
     public TradeRecordsController(
         ITradeRecordService tradeRecordService,
-        ISystemClock clock,
         IMapper mapper,
         ILogger<TradeRecordsController> logger) {
         this.tradeRecordService = tradeRecordService;
-        this.clock = clock;
         this.mapper = mapper;
         this.logger = logger;
     }
@@ -38,7 +36,7 @@ public class TradeRecordsController : ControllerBase {
 
         try {
             var model = mapper.Map<TradeRecord>(record);
-            model.Timestamp = clock.UtcNow;
+            
             await tradeRecordService.Create(model);
             return Ok();
         } catch (DbUpdateException ex) {
