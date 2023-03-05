@@ -4,7 +4,7 @@ This is an API for a fictitional London Stock Exchange application. It allows tr
 
 You have been asked to perform two quick tasks in this project.
 
-1. Add a timsestamp to the inserted stock values so the stock value can be tracked over time.
+1. Add a timsestamp to the inserted stock values so the stock value can be tracked over time, this should be aet by the platform, not the trader.
 2. Add a mean return value for last five trades and last ten trades.
 
 Tips:
